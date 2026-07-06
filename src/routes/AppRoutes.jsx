@@ -6,8 +6,12 @@ import LoginPage from '../pages/auth/LoginPage'
 import SignupPage from '../pages/auth/SignupPage'
 import DashboardPage from '../pages/DashboardPage'
 import TeamPage from '../pages/TeamPage'
-import ProjectPage from '../pages/ProjectPage'
+import TeamDetailPage from '../pages/TeamDetailPage'
+import ProjectListPage from '../pages/ProjectListPage'
+import ProjectCreatePage from '../pages/ProjectCreatePage'
+import ProjectEditPage from '../pages/ProjectEditPage'
 import KanbanPage from '../pages/KanbanPage'
+import KanbanListPage from '../pages/KanbanListPage'
 import { isAuthenticated } from '../utils/auth'
 
 function ProtectedRoute() {
@@ -40,7 +44,16 @@ export default function AppRoutes() {
         <Route element={<AppLayout />}>
           <Route path={ROUTES.dashboard} element={<DashboardPage />} />
           <Route path={ROUTES.team} element={<TeamPage />} />
-          <Route path={ROUTES.project} element={<ProjectPage />} />
+          <Route path={ROUTES.teamDetail} element={<TeamDetailPage />} />
+          <Route path={ROUTES.projects} element={<ProjectListPage />} />
+          <Route path={ROUTES.projectNew} element={<ProjectCreatePage />} />
+          <Route path={ROUTES.projectEdit} element={<ProjectEditPage />} />
+          <Route path={ROUTES.kanbanList} element={<KanbanListPage />} />
+          <Route path={ROUTES.project} element={<KanbanPage />} />
+          <Route path={ROUTES.projectBoard} element={<KanbanPage />} />
+          <Route path={ROUTES.projectMembers} element={<KanbanPage />} />
+          <Route path={ROUTES.projectActivity} element={<KanbanPage />} />
+          <Route path={ROUTES.projectSettings} element={<KanbanPage />} />
           <Route path={ROUTES.kanban} element={<KanbanPage />} />
         </Route>
       </Route>
