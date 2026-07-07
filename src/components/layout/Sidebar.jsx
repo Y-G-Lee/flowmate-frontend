@@ -84,7 +84,7 @@ export default function Sidebar() {
 
       <nav className="flex flex-1 flex-col gap-0.5 overflow-y-auto p-3">
         <p className="mb-1 px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
-          Workspace
+          워크스페이스
         </p>
         {navItems.map((item) => {
           const isActive = item.match(pathname)

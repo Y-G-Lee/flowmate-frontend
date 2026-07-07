@@ -1,8 +1,9 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import TeamMemberInviteModal from '../components/team/TeamMemberInviteModal'
 import TeamMemberList from '../components/team/TeamMemberList'
 import TeamProjectList from '../components/team/TeamProjectList'
-import { deleteTeam, fetchTeamDetail } from '../api/team'
+import { deleteTeam, fetchTeamDetail, inviteTeamMember } from '../api/team'
 import { getMockTeamDetail } from '../data/mockTeamDetails'
 import { routePaths } from '../constants/routes'
 import { clearAuth, getAuth } from '../utils/auth'
@@ -24,6 +25,8 @@ export default function TeamDetailPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [isDeleting, setIsDeleting] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
+  const [isInviting, setIsInviting] = useState(false)
 
   const auth = getAuth()
   const isOwner = useMemo(() => {
@@ -35,10 +38,17 @@ export default function TeamDetailPage() {
     )
   }, [team, auth?.id])
 
+  const loadTeamDetail = useCallback(async () => {
+    setError('')
+    const data = await fetchTeamDetail(teamId)
+    setTeam(data)
+    return data
+  }, [teamId])
+
   useEffect(() => {
     let cancelled = false
 
-    async function loadTeamDetail() {
+    async function init() {
       setLoading(true)
       setError('')
       try {
@@ -73,11 +83,22 @@ export default function TeamDetailPage() {
       }
     }
 
-    loadTeamDetail()
+    init()
     return () => {
       cancelled = true
     }
   }, [teamId, navigate])
+
+  const handleInviteMember = async ({ userId }) => {
+    setIsInviting(true)
+    try {
+      await inviteTeamMember(teamId, { userId })
+      setModalOpen(false)
+      await loadTeamDetail()
+    } finally {
+      setIsInviting(false)
+    }
+  }
 
   const handleDelete = async () => {
     if (
@@ -166,7 +187,7 @@ export default function TeamDetailPage() {
                 {team.name.charAt(0).toUpperCase()}
               </span>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Workspace</p>
+                <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">워크스페이스</p>
                 <h1 className="mt-1 text-2xl font-semibold tracking-tight text-slate-900">{team.name}</h1>
                 <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-500">
                   {team.description?.trim() || '팀 설명이 없습니다.'}
@@ -205,9 +226,20 @@ export default function TeamDetailPage() {
                 <h2 className="text-base font-semibold text-slate-900">멤버</h2>
                 <p className="mt-0.5 text-sm text-slate-500">팀에 참여 중인 사람</p>
               </div>
-              <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600">
-                {memberCount}명
-              </span>
+              <div className="flex items-center gap-2">
+                {isOwner && (
+                  <button
+                    type="button"
+                    onClick={() => setModalOpen(true)}
+                    className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50"
+                  >
+                    + 멤버 추가
+                  </button>
+                )}
+                <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600">
+                  {memberCount}명
+                </span>
+              </div>
             </div>
             <div className="mt-5">
               <TeamMemberList members={team.members} />
@@ -215,6 +247,14 @@ export default function TeamDetailPage() {
           </section>
         </div>
       </div>
+
+      <TeamMemberInviteModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        onSubmit={handleInviteMember}
+        isSubmitting={isInviting}
+        existingUserIds={team.members?.map((member) => member.userId).filter(Boolean) ?? []}
+      />
     </main>
   )
 }

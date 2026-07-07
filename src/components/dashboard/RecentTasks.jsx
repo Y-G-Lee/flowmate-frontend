@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { formatDueDate } from '../../utils/dashboardFormat'
+import { formatPriorityLabel } from '../../utils/taskFormat'
 import TaskFormModal from './TaskFormModal'
 import { routePaths } from '../../constants/routes'
-import { formatDueDate } from '../../utils/dashboardFormat'
 import StatusBadge from './StatusBadge'
 
 export default function RecentTasks({ tasks = [], projects = [], onCreateTask, onUpdateTask, onDeleteTask }) {
@@ -56,7 +57,7 @@ export default function RecentTasks({ tasks = [], projects = [], onCreateTask, o
       <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
         <div>
           <h2 className="text-base font-semibold text-slate-900">최근 작업</h2>
-          <p className="mt-0.5 text-sm text-slate-500">내가 참여 중인 Task</p>
+          <p className="mt-0.5 text-sm text-slate-500">내가 참여 중인 작업</p>
         </div>
         <div className="flex items-center gap-2">
           <button
@@ -84,7 +85,7 @@ export default function RecentTasks({ tasks = [], projects = [], onCreateTask, o
           <table className="w-full min-w-[640px] text-left text-sm">
             <thead>
               <tr className="border-b border-slate-100 text-xs font-medium uppercase tracking-wide text-slate-400">
-                <th className="px-5 py-3">ID</th>
+                <th className="px-5 py-3">번호</th>
                 <th className="px-5 py-3">작업</th>
                 <th className="px-5 py-3">상태</th>
                 <th className="px-5 py-3">담당</th>
@@ -115,7 +116,7 @@ export default function RecentTasks({ tasks = [], projects = [], onCreateTask, o
                     <StatusBadge status={task.status} />
                   </td>
                   <td className="px-5 py-3.5 text-slate-600">{task.assigneeName}</td>
-                  <td className="px-5 py-3.5 text-slate-500">{task.priority ?? '-'}</td>
+                  <td className="px-5 py-3.5 text-slate-500">{formatPriorityLabel(task.priority)}</td>
                   <td className="px-5 py-3.5 text-slate-500">
                     {formatDueDate(task.dueDate)}
                   </td>

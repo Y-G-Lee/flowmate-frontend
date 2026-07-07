@@ -81,7 +81,7 @@ export default function ProjectListPage() {
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
-              Projects
+              프로젝트
             </p>
             <h1 className="mt-0.5 text-xl font-semibold tracking-tight text-slate-900">프로젝트</h1>
             <p className="mt-1 text-xs text-slate-500">

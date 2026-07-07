@@ -87,7 +87,7 @@ export default function LoginPage() {
           type="email"
           name="email"
           autoComplete="email"
-          placeholder="you@example.com"
+          placeholder="이메일을 입력하세요"
           value={form.email}
           onChange={handleChange}
           error={errors.email}

@@ -37,7 +37,7 @@ export default function ProjectActivityTab({ project }) {
   return (
     <section className="rounded-lg border border-slate-200/80 bg-white">
       <div className="border-b border-slate-100 px-4 py-3">
-        <h2 className="text-sm font-semibold text-slate-900">Activity</h2>
+        <h2 className="text-sm font-semibold text-slate-900">활동</h2>
         <p className="mt-0.5 text-xs text-slate-500">프로젝트와 작업의 최근 활동</p>
       </div>
 

@@ -54,7 +54,7 @@ export default function TeamPage() {
       <div className="mx-auto max-w-6xl px-6 py-8">
         <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Workspace</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">워크스페이스</p>
             <h1 className="mt-1 text-2xl font-semibold tracking-tight text-slate-900">팀</h1>
             <p className="mt-2 text-sm text-slate-500">
               {loading

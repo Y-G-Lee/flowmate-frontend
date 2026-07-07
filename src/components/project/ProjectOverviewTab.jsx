@@ -30,7 +30,7 @@ export default function ProjectOverviewTab({ project }) {
       </div>
 
       <section className="rounded-lg border border-slate-200/80 bg-white p-4">
-        <h2 className="text-sm font-semibold text-slate-900">About</h2>
+        <h2 className="text-sm font-semibold text-slate-900">소개</h2>
         <p className="mt-2 text-sm leading-relaxed text-slate-600">
           {project.description || '프로젝트 설명이 없습니다.'}
         </p>

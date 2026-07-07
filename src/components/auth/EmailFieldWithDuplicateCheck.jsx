@@ -82,7 +82,7 @@ export default function EmailFieldWithDuplicateCheck({
           type="email"
           name="email"
           autoComplete="email"
-          placeholder="you@example.com"
+          placeholder="이메일@example.com"
           value={value}
           onChange={handleEmailChange}
           className={[
