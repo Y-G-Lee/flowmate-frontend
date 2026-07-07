@@ -5,15 +5,15 @@ import Button from '../ui/Button'
 import DueDateField from '../project/DueDateField'
 
 const STATUS_OPTIONS = [
-  { value: 'todo', label: 'To Do' },
-  { value: 'in_progress', label: 'In Progress' },
-  { value: 'done', label: 'Done' },
+  { value: 'todo', label: '할 일' },
+  { value: 'in_progress', label: '진행 중' },
+  { value: 'done', label: '완료' },
 ]
 
 const PRIORITY_OPTIONS = [
-  { value: 'High', label: 'High' },
-  { value: 'Medium', label: 'Medium' },
-  { value: 'Low', label: 'Low' },
+  { value: 'High', label: '높음' },
+  { value: 'Medium', label: '보통' },
+  { value: 'Low', label: '낮음' },
 ]
 
 const EMPTY_FORM = {

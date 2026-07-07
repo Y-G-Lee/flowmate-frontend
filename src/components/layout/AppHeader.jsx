@@ -12,8 +12,10 @@ function getPageTitle(pathname) {
   if (pathname === '/projects') return '프로젝트'
   if (pathname === '/projects/new') return '새 프로젝트'
   if (pathname === '/kanban') return '칸반보드'
-  if (pathname.includes('/board') || pathname.includes('/kanban')) return 'Board'
-  if (pathname.includes('/members')) return 'Members'
+  if (pathname.includes('/board') || pathname.includes('/kanban')) return '보드'
+  if (pathname.includes('/members')) return '멤버'
+  if (pathname.includes('/activity')) return '활동'
+  if (pathname.includes('/settings')) return '설정'
   if (pathname.startsWith('/projects/')) return '프로젝트'
   return 'Flowmate'
 }

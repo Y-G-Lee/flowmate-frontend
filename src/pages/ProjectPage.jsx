@@ -102,9 +102,9 @@ export default function ProjectCreatePage() {
           </div>
           <div className="mb-5 max-w-md"><ProjectProgressBar progress={0} size="sm" /></div>
           <nav className="flex gap-6 border-b border-slate-200/80">
-            <span className="tab-link active">Overview</span>
-            <span className="pb-3 text-sm text-slate-300">Board</span>
-            <span className="pb-3 text-sm text-slate-300">Members</span>
+            <span className="tab-link active">개요</span>
+            <span className="pb-3 text-sm text-slate-300">보드</span>
+            <span className="pb-3 text-sm text-slate-300">멤버</span>
           </nav>
         </div>
       </div>

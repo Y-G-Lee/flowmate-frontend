@@ -61,7 +61,7 @@ export default function TeamCreateModal({
                 setSubmitError('')
               }}
               error={error}
-              placeholder="예: Product Team"
+              placeholder="예: 제품팀"
               autoFocus
             />
             {submitError && <p className="text-sm text-red-600">{submitError}</p>}

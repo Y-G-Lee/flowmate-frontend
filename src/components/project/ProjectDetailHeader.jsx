@@ -5,11 +5,11 @@ import ProjectProgressBar from './ProjectProgressBar'
 import ProjectStatusBadge from './ProjectStatusBadge'
 
 const TABS = [
-  { key: 'overview', label: 'Overview', path: (id) => routePaths.project(id), end: true },
-  { key: 'board', label: 'Board', path: (id) => routePaths.projectBoard(id) },
-  { key: 'members', label: 'Members', path: (id) => routePaths.projectMembers(id) },
-  { key: 'activity', label: 'Activity', path: (id) => routePaths.projectActivity(id) },
-  { key: 'settings', label: 'Settings', path: (id) => routePaths.projectSettings(id) },
+  { key: 'overview', label: '개요', path: (id) => routePaths.project(id), end: true },
+  { key: 'board', label: '보드', path: (id) => routePaths.projectBoard(id) },
+  { key: 'members', label: '멤버', path: (id) => routePaths.projectMembers(id) },
+  { key: 'activity', label: '활동', path: (id) => routePaths.projectActivity(id) },
+  { key: 'settings', label: '설정', path: (id) => routePaths.projectSettings(id) },
 ]
 
 function tabLinkClass({ isActive }) {

@@ -107,6 +107,26 @@ export async function createTeam({ name }) {
   return mapTeam(data)
 }
 
+export async function inviteTeamMember(teamId, { userId }) {
+  const response = await fetch(`/api/teams/${teamId}/members`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      ...authHeaders(),
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ userId }),
+  })
+
+  const data = await response.json().catch(() => ({}))
+
+  if (!response.ok) {
+    throw new ApiError(response.status, data.message || '팀 멤버 추가에 실패했습니다.')
+  }
+
+  return mapTeamMember(data)
+}
+
 export async function deleteTeam(teamId) {
   const response = await fetch(`/api/teams/${teamId}`, {
     method: 'DELETE',
